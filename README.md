@@ -22,7 +22,7 @@ each one harder than the last. Every week ends with something a stranger can ope
 
 ---
 
-## Week 1 — A blockchain you can break
+## Week 1: A blockchain you can break
 
 **[Open the live demo →](https://hypovolemic.github.io/evm-l2-portfolio/w01/)**
 
@@ -85,7 +85,7 @@ candidate history among several that participants are still converging on. This 
 "the transaction confirmed" means something weaker on a real chain than it looks like it
 means here.
 
-**Economic incentives — mining costs nothing.**
+**Economic incentives**
 Proof of work is only a security mechanism because the electricity is real and the reward
 is worth more than the cost of behaving honestly. Here, mining costs a few milliseconds of
 somebody's laptop. There is no fee market, no difficulty retargeting as hash power
