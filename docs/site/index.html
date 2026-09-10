@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EVM Developer Programme — Portfolio</title>
+    <meta name="description" content="Twelve build artefacts from a 12-week Ethereum smart contract development programme." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='14' font-size='14'>⛓️</text></svg>" />
+    <style>
+      :root {
+        --bg: #f7f7f5; --panel: #fff; --ink: #1a1a18; --muted: #6b6b63;
+        --line: #e2e2dc; --accent: #2f5fd0; --done: #1f7a4d; --done-bg: #e8f5ee;
+        color-scheme: light;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #16161a; --panel: #1e1e23; --ink: #ececf0; --muted: #9b9ba6;
+          --line: #32323b; --accent: #7ba2ff; --done: #6ddba0; --done-bg: #16301f;
+          color-scheme: dark;
+        }
+      }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; background: var(--bg); color: var(--ink);
+        font: 15px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      }
+      main { max-width: 780px; margin: 0 auto; padding: 56px 20px 90px; }
+      h1 { font-size: 28px; margin: 0 0 8px; letter-spacing: -0.02em; }
+      .lede { color: var(--muted); max-width: 60ch; margin: 0 0 36px; }
+      ol { list-style: none; padding: 0; margin: 0; counter-reset: week; }
+      li {
+        counter-increment: week;
+        display: flex; gap: 16px; align-items: baseline;
+        padding: 15px 16px; margin-bottom: 8px;
+        background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+      }
+      li::before {
+        content: counter(week, decimal-leading-zero);
+        font: 700 13px/1 ui-monospace, Menlo, Consolas, monospace;
+        color: var(--muted); flex: 0 0 24px;
+      }
+      li.done { border-color: var(--done); }
+      li.done::before { color: var(--done); }
+      .body { flex: 1; }
+      .title { font-weight: 600; }
+      .kind { color: var(--muted); font-size: 13px; }
+      a { color: var(--accent); }
+      .tag {
+        font: 600 11px/1 ui-monospace, Menlo, Consolas, monospace;
+        padding: 5px 8px; border-radius: 999px;
+        background: var(--done-bg); color: var(--done); white-space: nowrap;
+      }
+      .tag.pending { background: transparent; color: var(--muted); border: 1px solid var(--line); }
+      footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>EVM Developer Programme</h1>
+      <p class="lede">
+        Twelve build artefacts from a 12-week programme in Ethereum smart contract
+        development, each one harder than the last. Source for everything is in
+        <a href="https://github.com/Hypovolemic/evm-l2-portfolio">one repository</a>.
+      </p>
+
+      <ol>
+        <li class="done">
+          <div class="body">
+            <div class="title"><a href="./w01/">Toy blockchain with browser visualiser</a></div>
+            <div class="kind">
+              Hashing, ECDSA signatures, proof of work, Merkle roots — and history you can try to rewrite.
+            </div>
+          </div>
+          <span class="tag">LIVE</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Transaction decoder CLI</div>
+            <div class="kind">Ethereum's account model, gas, and calldata, decoded field by field.</div>
+          </div>
+          <span class="tag pending">WEEK 2</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Four verified contracts</div>
+            <div class="kind">SimpleStorage, Faucet, Ballot, Escrow — deployed and source-verified.</div>
+          </div>
+          <span class="tag pending">WEEK 3</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Foundry suite with CI</div>
+            <div class="kind">Coverage, fuzzing, invariants, and safe deployer-key handling.</div>
+          </div>
+          <span class="tag pending">WEEK 4</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Token suite</div>
+            <div class="kind">ERC-20, ERC-721 and ERC-4626 written from their specifications.</div>
+          </div>
+          <span class="tag pending">WEEK 5</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Staking protocol</div>
+            <div class="kind">A multi-contract system, plus a reentrancy exploit and its fix.</div>
+          </div>
+          <span class="tag pending">WEEK 6</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Live staking dApp</div>
+            <div class="kind">React, viem and wagmi over the Week 6 protocol.</div>
+          </div>
+          <span class="tag pending">WEEK 7</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Oracles, indexing and account abstraction</div>
+            <div class="kind">The off-chain systems an on-chain application cannot do without.</div>
+          </div>
+          <span class="tag pending">WEEK 8</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">AMM on Layer 2</div>
+            <div class="kind">A constant product market maker with a tested invariant.</div>
+          </div>
+          <span class="tag pending">WEEK 9</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Security write-up series</div>
+            <div class="kind">Working exploits against every contract written so far.</div>
+          </div>
+          <span class="tag pending">WEEK 10</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Capstone specification and threat model</div>
+            <div class="kind">A multi-contract system of my own design.</div>
+          </div>
+          <span class="tag pending">WEEK 11</span>
+        </li>
+        <li>
+          <div class="body">
+            <div class="title">Audited capstone</div>
+            <div class="kind">Full test suite, written audit report, monitoring and a pause runbook.</div>
+          </div>
+          <span class="tag pending">WEEK 12</span>
+        </li>
+      </ol>
+
+      <footer>
+        Built in the open. Every week ends with something a stranger can open and use.
+      </footer>
+    </main>
+  </body>
+</html>
