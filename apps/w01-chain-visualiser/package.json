@@ -1,0 +1,23 @@
+{
+  "name": "w01-chain-visualiser",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@portfolio/toychain": "workspace:*"
+  },
+  "devDependencies": {
+    "happy-dom": "^20.14.0",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7",
+    "vitest": "^5.0.0"
+  }
+}

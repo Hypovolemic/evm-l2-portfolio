@@ -1,0 +1,17 @@
+{
+  "name": "evm-l2-portfolio",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "EVM Developer Programme - 12 showcase artefacts",
+  "license": "MIT",
+  "scripts": {
+    "test": "pnpm --recursive --if-present test",
+    "build": "pnpm --recursive --if-present build",
+    "typecheck": "pnpm --recursive --if-present typecheck",
+    "dev:w01": "pnpm --filter w01-chain-visualiser dev"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}
