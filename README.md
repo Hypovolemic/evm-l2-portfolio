@@ -21,6 +21,20 @@ contract, a write-up, or a repo with passing tests.
 | 11 | Capstone specification and threat model | Docs + deployed | Not started |
 | 12 | Complete capstone with audit report | Live URL + report + video | Not started |
 
+### After Week 12
+
+Extensions planned for once the twelve weeks are finished. Each builds on one of the
+deliverables above, and none starts before Week 12 is done.
+
+| # | Extension | Builds on | Status |
+| --- | --- | --- | --- |
+| 1 | Networked toy chain: several nodes in one page, with forks, reorgs and a network split | Week 1 | Planned |
+| 2 | Write-up: fork choice and finality, toy chain vs Ethereum | Extension 1 | Planned |
+| 3 | Passkey sign-in and sponsored gas for the dApp (ERC-4337 smart accounts and a paymaster) | Weeks 7 to 9 | Planned |
+| 4 | Factories for staking pools and AMM pairs, with indexer exports and alerts | Weeks 6, 9 and 12 | Planned |
+| 5 | Formal checks on the staking and AMM invariants with Halmos | Weeks 6 and 9 | Stretch |
+| 6 | Private allowlist using Semaphore membership proofs | Week 8 | Stretch |
+
 ---
 
 ## Week 1: A blockchain you can break
