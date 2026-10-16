@@ -172,15 +172,16 @@ repository or its history"*), and history is the expensive half.
 
 ## 6. Environment status
 
-Verified 2026-09-10:
+Verified 2026-10-16:
 
 | Tool | Status |
 | --- | --- |
 | Git 2.47.1 | ✅ installed (Windows) |
 | Node v24.14.0 | ✅ installed (Windows), satisfies the "Node 20 or later" requirement |
-| pnpm | ❌ not installed — `npm install -g pnpm` |
-| Foundry 1.8.1 | ✅ installed in **WSL Ubuntu 24.04** — `forge`, `cast`, `anvil`, `chisel`, `solar` in `~/.foundry/bin`, attestation-verified, and `~/.foundry/bin` added to PATH via `~/.bashrc`. **Not** installed on the Windows side. |
+| pnpm 12.3.4 | ✅ installed (Windows) via `npm install -g pnpm`. Build scripts are allowlisted with `allowBuilds:` in `pnpm-workspace.yaml` — pnpm 12 ignores `onlyBuiltDependencies` |
+| Foundry 1.8.1 | ✅ installed in **WSL Ubuntu 24.04** — `forge`, `cast`, `anvil`, `chisel`, `solar` in `~/.foundry/bin`, attestation-verified, and `~/.foundry/bin` added to PATH via `~/.bashrc`. **Not** installed on the Windows side. The PATH line sits below `.bashrc`'s non-interactive early return, so `wsl -- bash -lc 'forge …'` fails; use `bash -ic` or the full path `~/.foundry/bin/forge` |
 | WSL | ✅ Ubuntu 24.04.1 + docker-desktop, both running |
+| Poppler 25.07.0 | ✅ installed (Windows) via `winget install oschwartz10612.Poppler` — `pdftoppm`, `pdftotext`, `pdfimages` for reading the programme PDF. On PATH in new shells |
 
 **Open decision — where Foundry lives.** The repo is on the Windows filesystem
 (`C:\Users\weife\evm-l2-portfolio`) but the Foundry install was started in WSL. Foundry supports Git
@@ -295,10 +296,10 @@ code, answer the self-check aloud, name two things you got wrong first. Commit t
 
 ### 7.6 Acceptance criteria
 
-- [ ] Public URL loads and is interactive without installation
-- [ ] Tampering with a historical block visibly invalidates all subsequent blocks
-- [ ] Transactions are signed and invalid signatures are rejected
-- [ ] Repository README explains the omissions
+- [x] Public URL loads and is interactive without installation — live since 2026-10-16, see section 8
+- [x] Tampering with a historical block visibly invalidates all subsequent blocks
+- [x] Transactions are signed and invalid signatures are rejected
+- [x] Repository README explains the omissions
 - [ ] Weekly defence recorded
 
 ### 7.7 Self-check
@@ -313,7 +314,8 @@ cumulative and Phase 4 is unforgiving of gaps in Phase 2.
 
 | Item | Status |
 | --- | --- |
-| **AI use policy tiers.** Section 4 of the PDF says the policy has three tiers "which tighten and then loosen as competence builds", but the table does not extract from the file — likely a rendered graphic on page 7. It governs how much assistant help is permitted in Weeks 1–3. | Read in a PDF viewer before starting |
+| **Week 1 close-out.** PR #1 merged 2026-09-10, but every deploy failed with `Get Pages site failed … Not Found` until Pages was enabled (Source: GitHub Actions) on 2026-10-16 — the workflow cannot enable it itself. Now live at `hypovolemic.github.io/evm-l2-portfolio/w01/`. Remaining: phone check, defence recording, `w01-showcase` tag. | Close out before W2 |
+| **AI use policy tiers.** Section 4 of the PDF (page 7) says the policy has three tiers "which tighten and then loosen as competence builds" — and stops. The table is **missing from the file**, not an unextracted graphic: the page renders blank where it should be and the PDF contains no images at all (checked 2026-10-16). Indirect evidence only: Week 12's audit step 5 says "*now* the assistant is permitted as an attacker", and every defence is done with no assistant open. The sibling `Protocol-Research-Analyst-Programme.pdf` §5 has its policy intact (translator → research assistant → adversary and editor) and is probably the same template — a guide, not the rule. It governs how much assistant help is permitted in Weeks 1–3. | Ask the club organiser for the table |
 | **Weekly defence format.** Required every week and all twelve published, but the format is never specified. The 5–10 minute recorded walkthrough above is inferred from Section 7's "twenty minutes with no assistant open" rehearsal. | Assumption |
 | **Sepolia's successor.** The programme's one decision with a live expiry. Check `ethereum.org/developers/docs/networks` before Week 2 and again before Week 9; if a successor has landed, substitute it and nothing else changes. | Check before W2 |
 | **Where Foundry lives** — WSL vs Git Bash, and whether the repo moves into the WSL filesystem. See section 6. | Decide before W4 |
