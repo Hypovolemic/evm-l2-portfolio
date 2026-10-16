@@ -13,7 +13,7 @@ export function txHash(tx: Transaction): string {
  *
  * Pairs adjacent hashes and hashes them together, repeatedly, until one value
  * remains. An odd level duplicates its last element. That duplication is a real
- * flaw -- it is the root of Bitcoin's CVE-2012-2459 malleability bug -- and it is
+ * flaw (it is the cause of Bitcoin's CVE-2012-2459 malleability bug), and it is
  * kept here because it is the textbook construction and the failure is worth
  * being able to explain.
  *

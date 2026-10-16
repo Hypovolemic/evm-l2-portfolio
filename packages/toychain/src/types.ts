@@ -1,7 +1,7 @@
 /**
  * The sentinel `from` address for a block reward. A coinbase transaction is the
  * only kind that creates value out of nothing, and the only kind that carries no
- * signature -- there is no private key that could have produced one.
+ * signature, because there is no private key that could have produced one.
  */
 export const COINBASE = 'COINBASE' as const;
 

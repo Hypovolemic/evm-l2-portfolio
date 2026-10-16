@@ -42,7 +42,7 @@ export interface MineResult {
  * There is no cleverness available: SHA-256 gives no way to work backwards from
  * a desired output, so the only strategy is to try nonces until one lands. That
  * is the whole of proof of work, and the reason a chain cannot be quietly
- * rewritten -- redoing this for one block means redoing it for every block after
+ * rewritten: redoing this for one block means redoing it for every block after
  * it as well.
  *
  * At difficulty d the expected number of attempts is 16^d.

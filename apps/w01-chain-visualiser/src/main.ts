@@ -33,7 +33,7 @@ function loadWallets(): { me: Wallet; peer: Wallet } {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return JSON.parse(stored) as { me: Wallet; peer: Wallet };
   } catch {
-    // Private browsing, blocked storage, corrupted value -- fall through.
+    // Private browsing, blocked storage or a corrupted value. Fall through and make new wallets.
   }
   const wallets = { me: createWallet(), peer: createWallet() };
   try {
@@ -109,7 +109,7 @@ function header(result: ChainValidation): string {
         <p class="lede">
           Mine a block, sign a transaction, then edit something that already happened
           and watch every block after it stop being valid. Nothing here is on a real
-          network &mdash; it all runs in this tab.
+          network. It all runs in this tab.
         </p>
       </div>
       ${status}
@@ -120,7 +120,7 @@ function hint(): string {
   return `<div class="hint">
     <strong>Try this:</strong> mine two or three blocks, then change an amount inside
     block 1. The block turns red because the signature no longer covers that amount and
-    the proof of work no longer holds &mdash; and every later block turns red with it.
+    the proof of work no longer holds. Every later block turns red with it.
     Press <em>Re-mine</em> on the block you edited: it goes green again, and the chain
     is still broken.
   </div>`;
@@ -185,7 +185,7 @@ function mempoolPanel(result: ChainValidation): string {
           </div>`,
         )
         .join('')
-    : '<p class="muted">Empty. A block can still be mined &mdash; it will just carry the reward alone.</p>';
+    : '<p class="muted">Empty. You can still mine a block; it will only contain the block reward.</p>';
 
   return `
     <section class="panel">
@@ -277,7 +277,7 @@ function txCard(tx: Transaction, blockIndex: number, txIndex: number): string {
           type="number"
           value="${escape(tx.amount)}"
           data-edit="${blockIndex}:${txIndex}:amount"
-          title="Amount. This is signed over, so editing it forges the transaction."
+          title="Amount. It is part of what was signed, so editing it breaks the signature."
         />
       </div>
     </div>`;
@@ -289,8 +289,8 @@ function footer(): string {
       Week 1 of the EVM Developer Programme &middot;
       <a href="https://github.com/Hypovolemic/evm-l2-portfolio" target="_blank" rel="noopener">source on GitHub</a>
       &middot; SHA-256 hashing, secp256k1 signatures, proof of work, Merkle roots.
-      Read <em>What this does not do</em> in the README before believing anything here
-      resembles a real network.
+      The README's <em>What this does not do</em> section explains how this differs from a
+      real network.
     </footer>`;
 }
 
@@ -318,7 +318,7 @@ function wire(): void {
       lastMineAttempts = chain.remineBlock(index).attempts;
       message = {
         kind: 'ok',
-        text: `Re-mined block ${index}. Its own proof of work is valid again -- but every block after it still points at the hash it used to have.`,
+        text: `Re-mined block ${index}. Its own proof of work is valid again, but every block after it still points at the hash it used to have.`,
       };
       render();
     });
@@ -358,7 +358,7 @@ function onSend(): void {
 
   message = result.ok
     ? { kind: 'ok', text: 'Accepted into the mempool. Mine a block to settle it.' }
-    : { kind: 'bad', text: `Rejected -- ${result.error}` };
+    : { kind: 'bad', text: `Rejected: ${result.error}` };
 
   render();
 }
