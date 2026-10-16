@@ -113,6 +113,9 @@ The `week-NN/` prefix groups branches together in GitHub's branch list. It matte
 onward, when one week needs several branches (the Foundry port, CI and the keystore migration can
 each be done separately).
 
+Work outside the programme weeks uses its own prefix: `plan/<slug>` for planning-only changes, and
+`ext-NN/<slug>` for the extensions in section 10.
+
 Open a PR into `main` even when working alone, and squash merge it. The PR diff is what gets
 posted to the Cyfrin Discord for the once-per-phase external review the programme requires, and
 squashing keeps `main` to one readable commit per piece of work.
@@ -332,7 +335,7 @@ other, and gaps from Phase 2 cause real problems in Phase 4.
 
 | Item | Status |
 | --- | --- |
-| **Week 1 close-out.** PR #1 merged on 2026-09-10, but every deploy failed with `Get Pages site failed … Not Found` until Pages was enabled (Source: GitHub Actions) on 2026-10-16. The workflow cannot enable Pages by itself. The site is now live at `hypovolemic.github.io/evm-l2-portfolio/w01/`. Remaining: phone check, defence recording, `w01-showcase` tag. | Close out before W2 |
+| **Week 1 close-out.** PR #1 merged on 2026-09-10, but every deploy failed with `Get Pages site failed … Not Found` until Pages was enabled (Source: GitHub Actions) on 2026-10-16. The workflow cannot enable Pages by itself. The site is now live at `hypovolemic.github.io/evm-l2-portfolio/w01/` and tagged `w01-showcase` (2026-10-16). Remaining: phone check and defence recording. | Close out before W2 |
 | **AI use policy tiers.** Section 4 of the PDF (page 7) says the policy has three tiers "which tighten and then loosen as competence builds", and then stops. The table is **missing from the file**, not an image that failed to extract: the page is blank where it should be, and the PDF contains no images at all (checked 2026-10-16). Only indirect evidence survives. Week 12's audit step 5 says "*now* the assistant is permitted as an attacker", and every defence is done with no assistant open. The sibling `Protocol-Research-Analyst-Programme.pdf` §5 has its policy intact (translator, then research assistant, then adversary and editor) and probably uses the same template, so it is a useful guide but not the rule. The tiers decide how much assistant help is allowed in Weeks 1 to 3. | Ask the club organiser for the table |
 | **Weekly defence format.** Required every week, with all twelve published, but the format is never specified. The 5 to 10 minute recorded walkthrough above is inferred from Section 7's "twenty minutes with no assistant open" rehearsal. | Assumption |
 | **Sepolia's successor.** The one decision in the programme that may go out of date. Check `ethereum.org/developers/docs/networks` before Week 2 and again before Week 9; if a successor has launched, switch to it and nothing else changes. | Check before W2 |
@@ -358,3 +361,69 @@ These come from section 11 of the programme. If the work starts drifting this wa
   doesn't.
 - **Building in silence:** publishing each week is partly for learning and partly to get feedback
   from other people.
+
+## 10. After Week 12: extensions
+
+Planned on 2026-10-16. None of these starts until Week 12 is finished, because the programme comes
+first. Each one builds on a fixed programme deliverable, so none of them depends on the capstone,
+which stays open until Week 11.
+
+- Testnets only. No real money and no mainnet deployments.
+- One branch per extension, named `ext-NN/<slug>` (for example `ext-01/networked-toychain`), each
+  with its own PR, squash merged.
+- Each ends with something public, like a programme week, and follows the Writing rules in
+  section 3.
+- They are numbered in the order they should be done. Extension 2 uses extension 1's demo.
+
+### Core (about 5 to 6 weeks at 12 hours a week)
+
+**1. Networked toy chain** (1 week). Builds on Week 1. Lands in `packages/toychain` and
+`apps/w01-chain-visualiser`.
+- Several nodes simulated in one page, with adjustable delay between them and a button that splits
+  the network in two.
+- Needs a block tree and a "most total work wins" fork-choice rule in `packages/toychain`.
+- Done when: two nodes mining at the same time produce a visible fork; rejoining a split network
+  causes a reorg that returns the losing branch's transactions to the mempool; fork-choice tests
+  pass; and it is still a static page.
+- Why: the Week 1 defence names fork choice as the weakest part of my understanding.
+
+**2. Write-up: fork choice and finality, toy chain vs Ethereum** (1 week). Builds on extension 1.
+Lands in `docs/writeups/`.
+- Compares the toy chain's longest-chain rule with Ethereum's proof-of-stake fork choice
+  (LMD-GHOST) and finality (Casper FFG), using extension 1's demo for the toy chain side.
+- Done when: published in `docs/writeups/` and linked from the README.
+- Why: it covers the "no finality" omission in the README, and could also become a research piece
+  for the club.
+
+**3. Smart accounts for the dApp** (2 weeks). Builds on Weeks 7 to 9 and Week 8's account
+abstraction topic. Lands in `apps/dapp` and `contracts/`.
+- Passkey sign-in with ERC-4337 smart accounts, and a paymaster that pays gas for staking and
+  swapping.
+- Use an existing audited smart account and a testnet bundler through viem. Write the paymaster's
+  rules yourself: only calls to this project's contracts, and a daily limit per account.
+- Done when: someone with no wallet extension and no ETH can sign in with a passkey, then stake and
+  swap on the L2 testnet; the paymaster refuses anything outside its rules, and tests cover that.
+- Why: setting up a wallet and getting gas are the main things that stop people who don't already
+  use crypto.
+
+**4. Factories, exports and alerts** (1 to 2 weeks). Builds on Weeks 6, 9 and 12. Lands in
+`contracts/`, the indexer and the monitoring setup.
+- A factory that deploys staking pools per token pair, and an AMM pair factory if Week 9 builds a
+  single pair. Clones use initializers that are protected against being called twice.
+- The indexer covers every instance, with CSV exports and alerts.
+- Done when: a new pool or pair is deployed in one transaction and shows up in the dApp and the
+  indexer with no code change; a test shows the initializer cannot run twice; and one alert fires
+  on a test transaction.
+- Why: real protocols run many copies of the same contract, and unprotected initializers are a
+  known bug class.
+
+### Stretch (3 to 5 weeks, only if there is time and interest)
+
+**5. Formal checks with Halmos.** Check function-level properties of the staking and AMM contracts,
+for example that the constant product never decreases after a swap and that rewards paid never
+exceed rewards funded. Symbolic checks over whole call sequences are bounded and can time out, so a
+full proof is not guaranteed. An outside review is a bonus.
+
+**6. Private allowlist.** Replace Week 8's allowlist with Semaphore membership proofs, so the chain
+learns that a user is on the list but not which one. Someone still has to add members, and what
+users do afterwards is still public, so any privacy claim has to stay that narrow.
