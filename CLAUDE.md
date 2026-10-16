@@ -296,7 +296,7 @@ code, answer the self-check aloud, name two things you got wrong first. Commit t
 
 ### 7.6 Acceptance criteria
 
-- [ ] Public URL loads and is interactive without installation — **not live**, see section 8
+- [x] Public URL loads and is interactive without installation — live since 2026-10-16, see section 8
 - [x] Tampering with a historical block visibly invalidates all subsequent blocks
 - [x] Transactions are signed and invalid signatures are rejected
 - [x] Repository README explains the omissions
@@ -314,7 +314,7 @@ cumulative and Phase 4 is unforgiving of gaps in Phase 2.
 
 | Item | Status |
 | --- | --- |
-| **Week 1 is not live.** PR #1 merged 2026-09-10, but both `Deploy showcase site` runs failed with `Get Pages site failed … Not Found`: GitHub Pages was never enabled, and the workflow cannot enable it itself. The README's live-demo link 404s until it is. | Enable Settings → Pages → Source: GitHub Actions, re-run the deploy, then tag `w01-showcase` |
+| **Week 1 close-out.** PR #1 merged 2026-09-10, but every deploy failed with `Get Pages site failed … Not Found` until Pages was enabled (Source: GitHub Actions) on 2026-10-16 — the workflow cannot enable it itself. Now live at `hypovolemic.github.io/evm-l2-portfolio/w01/`. Remaining: phone check, defence recording, `w01-showcase` tag. | Close out before W2 |
 | **AI use policy tiers.** Section 4 of the PDF (page 7) says the policy has three tiers "which tighten and then loosen as competence builds" — and stops. The table is **missing from the file**, not an unextracted graphic: the page renders blank where it should be and the PDF contains no images at all (checked 2026-10-16). Indirect evidence only: Week 12's audit step 5 says "*now* the assistant is permitted as an attacker", and every defence is done with no assistant open. The sibling `Protocol-Research-Analyst-Programme.pdf` §5 has its policy intact (translator → research assistant → adversary and editor) and is probably the same template — a guide, not the rule. It governs how much assistant help is permitted in Weeks 1–3. | Ask the club organiser for the table |
 | **Weekly defence format.** Required every week and all twelve published, but the format is never specified. The 5–10 minute recorded walkthrough above is inferred from Section 7's "twenty minutes with no assistant open" rehearsal. | Assumption |
 | **Sepolia's successor.** The programme's one decision with a live expiry. Check `ethereum.org/developers/docs/networks` before Week 2 and again before Week 9; if a successor has landed, substitute it and nothing else changes. | Check before W2 |
