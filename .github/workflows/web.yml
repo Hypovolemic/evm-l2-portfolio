@@ -10,8 +10,8 @@ permissions:
   pages: write
   id-token: write
 
-# One deploy at a time. Never cancel one midway -- a half-published site is worse
-# than a stale one.
+# One deploy at a time. Never cancel one midway, because a half-published site is
+# worse than a stale one.
 concurrency:
   group: pages
   cancel-in-progress: false

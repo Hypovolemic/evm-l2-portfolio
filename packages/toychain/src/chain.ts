@@ -124,7 +124,7 @@ export class Blockchain {
    * This is the attacker's move, and running it is the cheapest way to feel why
    * rewriting history does not scale. Repairing one block leaves the next one
    * pointing at a hash that no longer exists, so the attacker has to redo this
-   * for every block from the edit to the tip -- while honest miners keep
+   * for every block from the edit to the tip, while honest miners keep
    * extending the tip they are trying to catch.
    */
   remineBlock(index: number): MineResult {
@@ -143,7 +143,7 @@ export class Blockchain {
    * Validate every block, in order.
    *
    * Once a block fails, every block after it is reported invalid too. That is not
-   * a display convenience -- a block is only as trustworthy as its ancestry, so a
+   * a display convenience. A block is only as trustworthy as its ancestry, so a
    * block descending from a broken one is not part of a valid chain regardless of
    * how well formed it is on its own.
    */

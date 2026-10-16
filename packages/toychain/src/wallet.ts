@@ -5,7 +5,7 @@ import { COINBASE } from './types.js';
 import { canonical, digestBytes } from './hash.js';
 
 /**
- * A keypair. The private key is 32 random bytes -- that is the whole ceremony.
+ * A keypair. The private key is 32 random bytes, and creating it is all it takes.
  * There is no registration step and nobody is told the account exists, which is
  * why an address can receive value before anyone has ever signed with it.
  */
@@ -49,7 +49,7 @@ export function signTransaction(tx: Transaction, privateKeyHex: string): Transac
  */
 export function verifyTransaction(tx: Transaction): boolean {
   // Coinbase transactions are unsigned by construction. They are constrained by
-  // the consensus rules in chain.ts instead -- one per block, fixed amount.
+  // the consensus rules in chain.ts instead: one per block, with a fixed amount.
   if (tx.from === COINBASE) return tx.signature === undefined;
   if (!tx.signature) return false;
 
